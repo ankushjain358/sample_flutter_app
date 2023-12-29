@@ -1,0 +1,43 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout to the selected branch
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Download and install flutter packages
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+         flutter-version: "3.16.5"
+         channel: 'stable'
+
+      # Get Flutter project dependencies
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Build APK
+      - name: Build APK
+        run: flutter build apk
+        
+      # Upload Artifact Build
+      - name: Upload Unsigned App Bundle
+        uses: actions/upload-artifact@v3
+        with:
+          name: unsigned-app-bundle
+          path: build/app/outputs/apk/release/*.apk

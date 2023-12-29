@@ -1,16 +1,42 @@
-# sample_flutter_app
+# Sample Flutter App with GitHub Actions Pipeline
+This is just a sample Flutter application designed for building GitHub action pipelines that generate the APK file.
 
-A new Flutter project.
+This project has 2 pipelines:
+1. Flutter Android Build (Development)
+2. Flutter Android Build (Production)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Flutter Android Build (Development)
+- File located at `sample_flutter_app/.github/worflows/flutter_android_build_dev.yml`.
+- No need to generate Private Key (Upload Key), and Key Store. 
+- Signing is done with default debug signing keys.
+- Flutter build works in Release mode because the file `sample_flutter_app/android/app/build.gradle` uses debug signing keys.
+    ```
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
+        }
+    }
+    ```
 
-A few resources to get you started if this is your first Flutter project:
+## Flutter Android Build (Production)
+- File located at `sample_flutter_app/.github/worflows/flutter_android_build_prod.yml`.
+- Next, you need the following things:
+    - **Private Key**: This will be used to sign APK
+    - **Public Certificate**: This will be uploaded to Play Console, which will be used to verify the signed APK.
+- Run the below command which generates a Key Store that includes the following:
+    - 2,048 bit RSA key pair (public-private keys)
+    - Self-signed certificate (contains the public key)
+    ```
+    keytool -genkey -v -keystore C:\Users\[Your Username]\Desktop\key.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias key_alias
+    ```
+    > Remember
+    > 1. A Key Store is a repository of security certificates and private keys. With above command, the new Key Store will only include one key. 
+    > 2. You are free to choose different passwords for Key Store and the key that it stores inside it.
+    > 3. `key_alias` in the above command belongs to your key inside the Key Store.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## References
+- [Flutter: Build and Deploy Android apps using GitHub Actions](https://tbrgroup.software/flutter-build-and-deploy-android-apps-using-github-actions/)
+- [Step-by-step guide to Android code signing and code signing with Codemagic](https://blog.codemagic.io/the-simple-guide-to-android-code-signing/)
