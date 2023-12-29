@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: flutter_android_build_dev
 
 on:
   push:
@@ -33,11 +33,11 @@ jobs:
 
       # Build APK
       - name: Build APK
-        run: flutter build apk
+        run: flutter build apk --release
         
       # Upload Artifact Build
-      - name: Upload Unsigned App Bundle
+      - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: unsigned-app-bundle
+          name: apk-file
           path: build/app/outputs/apk/release/*.apk

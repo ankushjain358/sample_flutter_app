@@ -3,13 +3,16 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: flutter_android_build_prod
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
+env:
+  PROPERTIES_PATH: "./android/key.properties"
 
 jobs:
   build:
@@ -27,17 +30,37 @@ jobs:
          flutter-version: "3.16.5"
          channel: 'stable'
 
+      # Creating the key.properties file
+      - run: |
+          echo keyPassword=\${{ secrets.KEY_STORE_PASSWORD }} > ${{env.PROPERTIES_PATH}}
+          echo storePassword=\${{ secrets.KEY_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
+          echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
+      
+      # Decoding base64 key into a file
+      - run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/key.jks
+
       # Get Flutter project dependencies
       - name: Get dependencies
         run: flutter pub get
 
       # Build APK
       - name: Build APK
-        run: flutter build apk
+        run: flutter build apk --release
+
+      # # Build App Bundle
+      # - name: Build Android App Bundle
+      #   run: flutter build appbundle --release
+      
+      # Make App Bundle downloadable
+      # - name: Upload App Bundle
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: appbundle
+      #     path: build/app/outputs/bundle/release
         
       # Upload Artifact Build
-      - name: Upload Unsigned App Bundle
+      - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: unsigned-app-bundle
+          name: apk-file
           path: build/app/outputs/apk/release/*.apk
