@@ -31,13 +31,15 @@ jobs:
          channel: 'stable'
 
       # Creating the key.properties file
-      - run: |
+      - name: Create the key.properties file
+        run: |
           echo keyPassword=\${{ secrets.KEY_STORE_PASSWORD }} > ${{env.PROPERTIES_PATH}}
           echo storePassword=\${{ secrets.KEY_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
           echo keyAlias=\${{ secrets.KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
       
       # Decoding base64 key into a file
-      - run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/key.jks
+      - name: Decode base64 key into a file
+        run: echo "${{ secrets.KEY_STORE }}" | base64 --decode > android/app/key.jks
 
       # Get Flutter project dependencies
       - name: Get dependencies
