@@ -7,9 +7,9 @@ name: flutter_android_build_dev
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "non-existing-branch" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "non-existing-branch" ]
 
 jobs:
   build:
