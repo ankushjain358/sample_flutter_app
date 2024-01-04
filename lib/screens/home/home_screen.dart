@@ -14,13 +14,17 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    
     final ThemeData theme = Theme.of(context);
+
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: CustomAppBar(),
       ),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: theme.primaryColor,
+        surfaceTintColor: Colors.white,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -51,11 +55,12 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
         /// Home page
         Card(
           shadowColor: Colors.transparent,
+          color: Colors.white,
           margin: const EdgeInsets.all(8.0),
           child: SizedBox.expand(
             child: Center(
               child: Text(
-                'Home page 1',
+                'Home page',
                 style: theme.textTheme.titleLarge,
               ),
             ),
