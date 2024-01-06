@@ -41,7 +41,7 @@ This project has 2 pipelines:
 - Then follow this blog - [How to Safely Build Assigned Flutter App with GitHub Actions](https://blog.devgenius.io/how-to-safely-build-assigned-flutter-app-with-github-actions-8860b1b6eef6).
 
 ## References
-- [Flutter: Build and Deploy Android apps using GitHub Actions](https://tbrgroup.software flutter-build-and-deploy-android-apps-using-github-actions/)
+- [Flutter: Build and Deploy Android apps using GitHub Actions](https://tbrgroup.software/flutter-build-and-deploy-android-apps-using-github-actions/)
 - [Step-by-step guide to Android code signing and code signing with Codemagic](https://blog.codemagic.io/the-simple-guide-to-android-code-signing/)
 - [Directory Structure reference](https://blog.logrocket.com/implementing-route-guards-flutter-web-apps/)
 - [Go router implementation](https://blog.codemagic.io/flutter-go-router-guide/)

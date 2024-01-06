@@ -1,64 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sample_flutter_app/widgets/custom_button_widget.dart';
+import 'package:sample_flutter_app/widgets/custom_text_field_widget.dart';
 
-class AuthScreenWidget extends StatelessWidget {
+class AuthScreenWidget extends StatefulWidget {
   const AuthScreenWidget({super.key});
 
   @override
+  State<AuthScreenWidget> createState() => _AuthScreenWidgetState();
+}
+
+class _AuthScreenWidgetState extends State<AuthScreenWidget> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text('Login'),
-        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+        body: Container(
+      padding: const EdgeInsets.fromLTRB(15, 150, 15, 15),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+              alignment: Alignment.center,
+              child: Text("Sign In",
+                  style: Theme.of(context).textTheme.titleMedium)),
+          Container(height: 50),
+          const CustomTextFieldWidget(hintText: 'Email Id', icon: Icons.email),
+          Container(height: 10),
+          const CustomTextFieldWidget(hintText: 'Password', icon: Icons.lock),
+          Container(height: 10),
+           CustomButtonWidget(
+            buttonText: 'Login',
+            onPressed: () => {
+              context.go("/")
+            },
+          )
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const TextField(
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            const SizedBox(height: 16.0),
-            const TextField(
-              decoration: InputDecoration(labelText: 'Password'),
-              obscureText: true,
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              // ignore: avoid_print
-              onPressed: () => context.replace("/"),
-              child: const Text('Login'),
-            ),
-            const SizedBox(height: 16.0),
-            const Text('Or login with:'),
-            const SizedBox(height: 8.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Implement Google login
-                    context.go("/");
-                  },
-                  icon: const Icon(Icons.g_translate),
-                  label: const Text('Google'),
-                ),
-                const SizedBox(width: 16.0),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Implement Facebook login
-                    context.go("/");
-                  },
-                  icon: const Icon(Icons.facebook),
-                  label: const Text('Facebook'),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
+    ));
   }
 }

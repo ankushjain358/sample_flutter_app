@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../custom/custom_app_bar.dart';
+import 'package:sample_flutter_app/widgets/custom_app_bar_widget.dart';
 
 
 class HomeScreenWidget extends StatefulWidget {
@@ -20,7 +20,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(60.0),
-        child: CustomAppBar(),
+        child: CustomAppBarWidget(),
       ),
       bottomNavigationBar: NavigationBar(
         backgroundColor: theme.primaryColor,

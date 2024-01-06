@@ -12,18 +12,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent.shade400),
         textTheme: const TextTheme(
-            labelSmall: TextStyle(fontSize: 16),
             titleSmall: TextStyle(fontSize: 24),
             titleMedium: TextStyle(fontSize: 30),
             titleLarge: TextStyle(fontSize: 36)),
         inputDecorationTheme: InputDecorationTheme(
-          contentPadding: const EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.all(10),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),
             hintStyle: const TextStyle(fontSize: 14)),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.pink),
         useMaterial3: true,
       ),
     );
