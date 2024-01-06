@@ -23,7 +23,7 @@ class _AuthScreenWidgetState extends State<AuthScreenWidget> {
           Container(
               alignment: Alignment.center,
               child: Text("Sign In",
-                  style: Theme.of(context).textTheme.titleMedium)),
+                  style: Theme.of(context).textTheme.titleLarge)),
           Container(height: 50),
           const CustomTextFieldWidget(hintText: 'Email Id', icon: Icons.email),
           Container(height: 10),

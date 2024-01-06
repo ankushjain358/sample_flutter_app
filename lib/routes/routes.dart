@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:sample_flutter_app/screens/auth/auth_screen.dart';
-import 'package:sample_flutter_app/screens/home/home_screen.dart';
+import 'package:sample_flutter_app/screens/auth/auth_screen_widget.dart';
+import 'package:sample_flutter_app/screens/home/home_screen_widget.dart';
 
 class AppRoutes {
   static const home = '/';
