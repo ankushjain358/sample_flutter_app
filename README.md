@@ -47,3 +47,4 @@ This project has 2 pipelines:
 - [Go router implementation](https://blog.codemagic.io/flutter-go-router-guide/)
 - [REDIRECT USER TO LOGIN FORM IF THE USER IS NOT LOGGED IN-FLUTTER](https://www.appsloveworld.com/flutter/200/168/redirect-user-to-login-form-if-the-user-is-not-logged-in?expand_article=1)
 - [Flutter TextTheme Default Font Sizes](https://api.flutter.dev/flutter/material/TextTheme-class.html)
+- [Take a picture using the camera](https://docs.flutter.dev/cookbook/plugins/picture-using-camera)
